@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Weather App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Weather Forecast</h1>
+        <div class="search-box">
+            <input type="text" id="city-input" placeholder="Enter city name..." autocomplete="off">
+            <button id="get-weather-btn">Get Weather</button>
+        </div>
+        <div id="weather-result" class="weather-result-hidden">
+            <!-- Loading spinner -->
+            <div id="loader" class="loader" style="display: none;"></div>
+            
+            <!-- Weather data will be displayed here -->
+            <div id="weather-data"></div>
+        </div>
+    </div>
+
+    <script>
+        const cityInput = document.getElementById('city-input');
+        const getWeatherBtn = document.getElementById('get-weather-btn');
+        const weatherResultDiv = document.getElementById('weather-result');
+        const weatherDataDiv = document.getElementById('weather-data');
+        const loader = document.getElementById('loader');
+
+        // Function to fetch and display weather
+        const fetchWeather = async () => {
+            const city = cityInput.value.trim();
+            if (city === "") {
+                weatherDataDiv.innerHTML = `<p class="error-message">Please enter a city name.</p>`;
+                weatherResultDiv.classList.remove('weather-result-hidden');
+                weatherResultDiv.classList.add('weather-result-visible');
+                return;
+            }
+
+            // Show loader and hide previous results
+            loader.style.display = 'block';
+            weatherDataDiv.innerHTML = '';
+            weatherResultDiv.classList.remove('weather-result-hidden');
+            weatherResultDiv.classList.add('weather-result-visible');
+
+            try {
+                const response = await fetch('/weather', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ city: city }),
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    // If server returns an error (like 404 or 500), it will be in data.error
+                    throw new Error(data.error || `HTTP error! status: ${response.status}`);
+                }
+
+                // Display weather data
+                weatherDataDiv.innerHTML = `
+                    <h2>${data.city}</h2>
+                    <div class="weather-icon">
+                        <img src="https://openweathermap.org/img/wn/${data.icon}@2x.png" alt="Weather icon">
+                    </div>
+                    <p class="temperature">${data.temperature}</p>
+                    <p class="description">${data.description}</p>
+                    <div class="details">
+                        <p><strong>Humidity:</strong> ${data.humidity}</p>
+                        <p><strong>Wind Speed:</strong> ${data.wind_speed}</p>
+                    </div>
+                `;
+            } catch (error) {
+                weatherDataDiv.innerHTML = `<p class="error-message">Error: ${error.message}</p>`;
+            } finally {
+                // Hide loader
+                loader.style.display = 'none';
+            }
+        };
+
+        // Event listener for the button click
+        getWeatherBtn.addEventListener('click', fetchWeather);
+
+        // Event listener for pressing "Enter" in the input field
+        cityInput.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                fetchWeather();
+            }
+        });
+    </script>
+</body>
+</html>

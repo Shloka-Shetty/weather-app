@@ -1,0 +1,143 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+.search-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+#city-input {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: 2px solid #dcdcdc;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#city-input:focus {
+    border-color: #3498db;
+}
+
+#get-weather-btn {
+    padding: 12px 20px;
+    border: none;
+    background-color: #3498db;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#get-weather-btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+#get-weather-btn:active {
+    transform: translateY(0);
+}
+
+.weather-result-hidden {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.weather-result-visible {
+    opacity: 1;
+    max-height: 500px; /* Adjust as needed */
+    transition: max-height 0.7s ease-in, opacity 0.7s ease-in;
+}
+
+#weather-data h2 {
+    font-size: 28px;
+    margin-bottom: 5px;
+    color: #34495e;
+}
+
+.weather-icon img {
+    width: 100px;
+    height: 100px;
+}
+
+.temperature {
+    font-size: 48px;
+    font-weight: 700;
+    margin: 5px 0;
+    color: #2c3e50;
+}
+
+.description {
+    font-size: 20px;
+    font-style: italic;
+    color: #7f8c8d;
+    margin-bottom: 20px;
+}
+
+.details {
+    display: flex;
+    justify-content: space-around;
+    background-color: #ecf0f1;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.details p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+/* Loader animation */
+.loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
