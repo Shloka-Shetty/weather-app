@@ -1,43 +1,29 @@
-# 🌦️ Python Weather Forecast App
+# 🌤️ Weather Forecast Web Application
 
-Welcome to the **Python Weather Forecast App** — a simple and interactive web application that lets you check real-time weather for any city in the world 🌍.  
-
-This is a perfect starter project to learn how **Python (Flask)** works together with a **frontend (HTML/CSS)** and a public **weather API**.  
-
----
-
-## ✨ Features
-
-- 🌐 **Global Search** — Check the weather for any city worldwide.  
-- ⏳ **Live Weather Data** — Always up to date.  
-- 🌡️ **Key Weather Details** — Displays:
-  - Temperature  
-  - Humidity  
-  - Wind Speed  
-  - Weather Description (e.g., “Clear sky”, “Light rain”)  
-- 🧭 **Simple & Clean UI** — Minimalist design for easy use.  
-- 🛡️ **Error Handling** — Friendly messages for invalid city names or connection issues.
+A simple and responsive **weather forecast web app** built with **Python (Flask)** and **OpenWeatherMap API**.  
+The application allows users to enter a city name and get **real-time weather information** including temperature, humidity, wind speed, and weather conditions. It features a clean UI, dynamic frontend rendering with JavaScript, and robust error handling for invalid inputs or network issues.
 
 ---
 
-## 🧰 What You’ll Need
-
-Before starting, make sure you have:
-
-- [Python 3.10+](https://www.python.org/downloads/) installed
-- `pip` (usually comes with Python)
-- A free [OpenWeatherMap](https://openweathermap.org/) API key
+## 🚀 Features
+- Real-time weather data from OpenWeatherMap API  
+- Displays temperature, humidity, wind speed, and condition icons  
+- Responsive and user-friendly interface  
+- Error handling for invalid city names and network issues  
 
 ---
 
-## 🚀 Getting Started
+## 🛠️ Tech Stack
+- **Backend:** Python, Flask  
+- **Frontend:** HTML, CSS, JavaScript  
+- **API:** OpenWeatherMap
 
-Follow these simple steps to run the app on your machine.
+---
 
-### 1. 📁 Project Setup
+## 📦 Installation & Setup
 
-Clone or download the repository:
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/weather-app.git
+   cd weather-app
 
-```bash
-git clone https://github.com/your-username/weather_app.git
-cd weather_app
